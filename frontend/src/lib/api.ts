@@ -60,7 +60,7 @@ class ApiClient {
 
   // Auth endpoints
   async register(data: { username: string; email: string; password: string; publicKey: string }) {
-    const response = await this.client.post('/api/auth.php?action=register', data);
+    const response = await this.client.post('/api/auth-new.php?action=register', data);
     if (response.data.token) {
       this.setToken(response.data.token);
     }
@@ -68,7 +68,7 @@ class ApiClient {
   }
 
   async login(data: { email: string; password: string }) {
-    const response = await this.client.post('/api/auth.php?action=login', data);
+    const response = await this.client.post('/api/auth-new.php?action=login', data);
     if (response.data.token) {
       this.setToken(response.data.token);
     }
@@ -76,7 +76,7 @@ class ApiClient {
   }
 
   async logout() {
-    await this.client.post('/api/auth.php?action=logout');
+    await this.client.post('/api/auth-new.php?action=logout');
     this.clearToken();
   }
 
